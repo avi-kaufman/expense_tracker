@@ -119,7 +119,7 @@ def edit_expense(expense_id,amount=None,category=None,comments=None):
     return edited_expense 
 
 #need to add user_id when searching
-def get_expenses(user_id, age, categories=None): # Get expense by age and by categories
+def get_expenses(user_id, start_date, end_date, categories=None): # Get expense by age and by categories
     '''
     - Purpose: Retrieves expenses for a user based on age and optional categories.
         - Parameters:
