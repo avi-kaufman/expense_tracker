@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 void main() {
   runApp(ExpenseTrackerApp());
@@ -7,10 +8,13 @@ void main() {
 class ExpenseTrackerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Color appBarColor = const Color.fromRGBO(15, 15, 15, 1);
+
     return MaterialApp(
       home: Scaffold(
+          backgroundColor: Color(0XFF2A3439),
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: const Color(0XFF2F4F4F),
             centerTitle: true,
             title: const Text(
               'Expense Tracker',
@@ -39,7 +43,7 @@ class ExpenseTrackerApp extends StatelessWidget {
             onPressed: () {},
             child: const Icon(Icons.add),
           ),
-          body: HomeScreen()),
+          body: const HomeScreen()),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -50,34 +54,76 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.restaurant_menu, size: 45),
-                title: Text('Food'),
-                subtitle: Text('100 \$'),
+    return Container(
+        margin: const EdgeInsets.fromLTRB(20, 20, 30, 0),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 20),
+            PieChart(
+              centerText: 'Monthly sepent\n 100\$',
+              dataMap: {'Food': 3, 'Car': 8, 'Denis': 15},
+              chartType: ChartType.ring,
+              colorList: [
+                Color(0XFFD4AF37),
+                Color(0XFFC0C0C0),
+                Color(0XFFCD7F32),
+                Color(0XFF333333),
+                Color(0XFF4682B4)
+              ],
+              chartValuesOptions: ChartValuesOptions(
+                showChartValuesInPercentage: true,
               ),
-            ],
-          ),
-        ),
-        Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.car_crash, size: 45),
-                title: Text('Car'),
-                subtitle: Text('250 \$'),
+              // totalValue: 50.0,
+            ),
+            SizedBox(height: 20),
+            Card(
+              color: Color(0XFF43464B),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(
+                      Icons.restaurant_sharp,
+                      size: 45,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Food',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    subtitle: Text(
+                      '327.80 \$',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        )
-      ],
-    );
+            ),
+            Card(
+              color: Color(0XFF43464B),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(
+                      Icons.car_crash,
+                      size: 45,
+                      color: Colors.white,
+                    ),
+                    title: Text(
+                      'Car',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    subtitle: Text(
+                      '250 \$',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ));
   }
 }
