@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import './navBar.dart';
 
 void main() {
   runApp(ExpenseTrackerApp());
@@ -8,25 +9,16 @@ void main() {
 class ExpenseTrackerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Color appBarColor = const Color.fromRGBO(15, 15, 15, 1);
-
     return MaterialApp(
       home: Scaffold(
           backgroundColor: Color(0XFF2A3439),
+          drawer: NavBar(),
           appBar: AppBar(
             backgroundColor: const Color(0XFF2F4F4F),
             centerTitle: true,
             title: const Text(
               'Expense Tracker',
               style: TextStyle(color: Colors.white, fontSize: 24),
-            ),
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              ),
-              tooltip: 'Shows the menu',
-              onPressed: () {},
             ),
             actions: <Widget>[
               IconButton(
